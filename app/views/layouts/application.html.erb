@@ -16,8 +16,10 @@
       <p class="header_pageTitle">新着記事</p>
       <div class="dropdown">
         <%= image_tag "default-avatar.png", class: "header_avatar dropbtn" %>
-          <a href="#">プロフィール</a>
-          <a href="#">ログアウト</a>
+          <div class="dropdown-content">
+            <a href="#">プロフィール</a>
+            <a href="#">ログアウト</a>
+          </div>
       </div>
     </header>
     <% if flash.present? %>
