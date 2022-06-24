@@ -37,6 +37,8 @@ gem 'binding_of_caller'
 
 gem 'devise'
 
+gem 'aws-sdk-s3', require: false
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -53,6 +55,9 @@ group :development, :test do
 
   # 文法チェック
   gem 'rubocop-rails'
+
+  # 環境編集の設定
+  gem 'dotenv-rails'
 end
 
 group :development do
