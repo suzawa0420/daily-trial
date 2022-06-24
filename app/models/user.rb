@@ -23,6 +23,11 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable
 
   has_many :articles, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  # usersテーブル -> likesテーブル -> articlesテーブル
+  # favorite_articlesのDBもモデルも存在しない -> ソースのarticleを参照
+  has_many :favorite_articles, through: :likes, source: :article
   has_one :profile, dependent: :destroy
 
   delegate :birthday, :age, :gender, to: :profile, allow_nil: true
@@ -36,6 +41,10 @@ class User < ApplicationRecord
 
   def has_written?(article)
     articles.exists?(id: article)
+  end
+
+  def has_liked?(article)
+    likes.exists?(article_id: article.id)
   end
 
   def display_name
