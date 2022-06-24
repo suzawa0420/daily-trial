@@ -5,6 +5,7 @@
   "website": "",
   "repository": "https://github.com/suzawa0420/daily-trial",
   "env": {},
+  "stack": "heroku-18",
   "addons": [
     "heroku-postgresql:hobby-dev"
   ],
