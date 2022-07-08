@@ -28,9 +28,17 @@ class User < ApplicationRecord
   # usersテーブル -> likesテーブル -> articlesテーブル
   # favorite_articlesのDBもモデルも存在しない -> ソースのarticleを参照
   has_many :favorite_articles, through: :likes, source: :article
+
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :followings, through: :following_relationships, source: :following
+
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships, source: :follower
+
   has_one :profile, dependent: :destroy
 
   delegate :birthday, :age, :gender, to: :profile, allow_nil: true
+
   # def birthday
   #   profile&.birthday
   # end
@@ -48,6 +56,9 @@ class User < ApplicationRecord
   end
 
   def display_name
+    # ぼっち演算子
+    profile&.nickname || self.email.split('@').first
+
     # if profile && profile.nickname
     #   profile.nickname
     # else
@@ -55,9 +66,15 @@ class User < ApplicationRecord
     #   # cohki0335@gmail.com
     #   # => ['cohki0305', 'gmail.com']
     # end
+  end
 
-    # ぼっち演算子
-    profile&.nickname || self.email.split('@').first
+  def follow!(user)
+    following_relationships.create!(following_id: user.id)
+  end
+
+  def unfollow!(user)
+    relation = following_relationships.find_by!(following_id: user.id)
+    relation.destroy!
   end
 
   def prepare_profile
