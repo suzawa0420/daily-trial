@@ -50,6 +50,9 @@ gem 'mimemagic'
 # modelの見た目に関する処理を分ける
 gem 'active_decorator'
 
+# railsの値をJSONに変換
+gem 'active_model_serializers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
