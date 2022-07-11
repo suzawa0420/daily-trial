@@ -77,6 +77,10 @@ group :development do
 
 # html => haml変換
   gem 'erb2haml'
+
+# メール内容の確認
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :test do
