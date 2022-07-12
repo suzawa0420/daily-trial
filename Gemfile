@@ -68,6 +68,9 @@ group :development, :test do
 
   # 環境編集の設定
   gem 'dotenv-rails'
+
+  # テスト環境の構築
+  gem 'rspec-rails'
 end
 
 group :development do
