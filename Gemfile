@@ -53,6 +53,9 @@ gem 'active_decorator'
 # railsの値をJSONに変換
 gem 'active_model_serializers'
 
+# 非同期処理（メール・動画など）
+gem 'sidekiq'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
