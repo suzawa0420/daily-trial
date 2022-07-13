@@ -71,6 +71,7 @@ group :development, :test do
 
   # テスト環境の構築
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
